@@ -30,7 +30,7 @@ export class LoginComponent implements OnInit {
         console.log(this.authService.decoded.roles[0].authority);
         this.nomUser = this.authService.decoded.sub;
         this.roleUser = this.authService.decoded.roles[0].authority;
-        // console.log(jwt);
+        console.log(jwt);
         this.router.navigateByUrl("/home");
       },
       (error) => {
