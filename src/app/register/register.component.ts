@@ -3,6 +3,7 @@ import { RegisterService } from "../services/register.service";
 import { CandidatElastic } from "../models/candidat-elactic";
 import { Candidat } from "../models/candidat";
 import { CrudService } from "../services/crud.service";
+import { Recruteur } from "../models/recruteur";
 
 @Component({
   selector: "app-register",
@@ -11,6 +12,8 @@ import { CrudService } from "../services/crud.service";
 })
 export class RegisterComponent implements OnInit {
   getcandidat;
+  x = true;
+  getrecruteur;
   candidatE: CandidatElastic = {
     username: "",
     password: "",
@@ -21,6 +24,13 @@ export class RegisterComponent implements OnInit {
     nom: "",
     prenom: "",
     email: "",
+  };
+  recruteur: Recruteur = {
+    id: null,
+    nom: "",
+    prenom: "",
+    email: "",
+    nom_entreprise: "",
   };
 
   constructor(private http: RegisterService, private crudsevice: CrudService) {}
@@ -39,13 +49,25 @@ export class RegisterComponent implements OnInit {
       (error) => console.log(error)
     );
   }
-  get() {
-    this.crudsevice.getAll("candidat/get").subscribe((data) => {
-      console.log("data", data);
-      this.getcandidat = data.content;
-      console.log(this.getcandidat.length);
-    });
+  addR(value) {
+    console.log(value);
+    console.log(this.candidatE);
+
+    this.http.addCandidatR(this.candidatE).subscribe(
+      (data) => console.log("data", data),
+      (error) => console.log(error)
+    );
+    //add to the second database
+    this.recruteur.id = this.getcandidat.length + 1;
+    this.http.addRecruteurToElastic(this.recruteur).subscribe(
+      (data) => console.log("data", data),
+      (error) => console.log(error)
+    );
   }
+  get() {
+    this.http.getAll().subscribe((data) => (this.getcandidat = data));
+  }
+
   /* addCandidatToElastic(value) {
     this.candidatE = new CandidatElastic(
       value.nom,
@@ -56,5 +78,8 @@ export class RegisterComponent implements OnInit {
   }*/
   ngOnInit() {
     this.get();
+  }
+  rec() {
+    this.x = false;
   }
 }

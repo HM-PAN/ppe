@@ -80,7 +80,7 @@
   </div>
   <br /><br />
 </article> -->
-<div class="container">
+<div class="container" *ngIf="x">
   <form #f="ngForm" (ngSubmit)="add(f.value)">
     <div class="form-group">
       nom:
@@ -96,6 +96,29 @@
       repassword:
       <input [(ngModel)]="candidatE.repassword" name="repassword" type=" text" class="form-control">
     </div>
-    <button type="submit"> addddddd</button>
+    <button type="submit" class="btn btn-success"> Submit</button>
+    <button class="btn btn-warning" (click)="rec()"> registerRecruteur</button>
+  </form>
+</div>
+<div class="container" *ngIf="!x">
+  <form #f="ngForm" (ngSubmit)="addR(f.value)">
+    <div class="form-group">
+      nom:
+      <input [(ngModel)]="recruteur.nom" name="nom" type="text" class="form-control">
+      prenom:
+      <input [(ngModel)]="recruteur.prenom" name="prenom" type="text" class="form-control">
+      email:
+      <input [(ngModel)]="recruteur.email" name="email" type="text" class="form-control">
+      nomEntreprise:
+      <input [(ngModel)]="recruteur.nom_entreprise" name="email" type="text" class="form-control">
+
+      username:
+      <input [(ngModel)]="candidatE.username" name="username" type="text" class="form-control">
+      password:
+      <input [(ngModel)]="candidatE.password" name="password " type=" text" class="form-control">
+      repassword:
+      <input [(ngModel)]="candidatE.repassword" name="repassword" type=" text" class="form-control">
+    </div>
+    <button type="submit" class="btn btn-success"> Submit</button>
   </form>
 </div>

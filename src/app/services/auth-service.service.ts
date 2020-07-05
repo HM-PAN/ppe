@@ -6,6 +6,8 @@ import * as jwt_decode from "jwt-decode";
   providedIn: "root",
 })
 export class AuthServiceService {
+  nomU;
+  roleU;
   token;
   decoded;
   private host: string = "http://localhost:8007";
@@ -13,9 +15,15 @@ export class AuthServiceService {
   login(user) {
     return this.http.post(this.host + "/login", user);
   }
+  loginR(user) {
+    return this.http.post(this.host + "/login", user);
+  }
   saveToken(jwt: string) {
     localStorage.setItem("token", jwt);
     this.token = jwt;
     this.decoded = jwt_decode(this.token);
+    this.nomU = this.decoded.sub;
+    this.roleU = this.decoded.roles[0].authority;
+    console.log("hamzaaaaa", this.nomU, this.roleU);
   }
 }
