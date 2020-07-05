@@ -12,6 +12,10 @@ import { AuthServiceService } from "./services/auth-service.service";
 import { HomeComponent } from "./home/home.component";
 import { WebScrapingService } from "./services/web-scraping.service";
 import { MaterialModule } from "./material/material.module";
+import { LoginRComponent } from "./login/login-r/login-r.component";
+import { OffresComponent } from "./offres/offres.component";
+import { CompteRecruteurComponent } from "./compte-recruteur/compte-recruteur.component";
+import { CompteCandidatComponent } from "./compte-candidat/compte-candidat.component";
 
 @NgModule({
   declarations: [
@@ -19,6 +23,10 @@ import { MaterialModule } from "./material/material.module";
     LoginComponent,
     RegisterComponent,
     HomeComponent,
+    LoginRComponent,
+    OffresComponent,
+    CompteRecruteurComponent,
+    CompteCandidatComponent,
   ],
   imports: [
     BrowserModule,
